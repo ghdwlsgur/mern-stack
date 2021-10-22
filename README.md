@@ -1,4 +1,5 @@
-
+### 10/21 (목)
+<hr>
 ## 쿠키와 세션을 사용하는 이유
 > HTTP 프로토콜의 특징이자 약점을 보완하기 위해서 사용.
 
@@ -86,3 +87,45 @@ Request/Response에서 스니핑을 당할 위험이 있어 보안이 비교적 
 - 쿠키에 정보가 있기 때문에 서버에 요청시 헤더를 바로 참조하면 되므로 속도에서 유리하지만. 세션은 제공받은 세션아이디를 이용해서 <br>
 서버에 다시 데이터를 참조해야 하므로 속도가 비교적 느릴 수 있다.
 
+진행상황 : 회원가입, 로그인, 게시글 작성 REST API 작성, 테스트 완료 
+
+### 10/22 (금)
+<hr>
+
+보다 편리하게 유효성 검사를 진행하기 위해서 리액트 훅을 알아보던 중 useForm을 발견했다. !! <br>
+## React Hook Form https://react-hook-form.com/ <br>
+
+> React Hook Form은 React에서 Form을 쉽게 만들기 위한 라이브러리로 성능이 좋고 유연하며 유효성 검사에 탁월하다.
+
+## 장점 <br>
+- 적은 코드로 더 좋은 퍼포먼스를 낼 수 있다.
+- 다른 라이브러리 혹은 React에 비해 Re-render수가 적다.
+- Fast Mounting (로딩속도가 빠름)
+- TS를 기본으로 지원
+
+## Register 
+> register은 input에서 값을 불러오기 위한 함수로 다른 옵션을 이용하면 input의 유효성 검사도 쉽게 할 수 있다.
+
+먼저 register은 사용하기 위해서는 input에 다음과 같이 {...register("사용하고 싶은 이름")} 이라고 적어주면 <br>
+나중에 적은 이름으로 값을 불러올 수 있다. '어떻게 값을 불러올까?' input에서 입력하는 값을 실시간으로 확인하기 위해서는 <br>
+watch라는 함수를 사용할 수 있습니다.
+
+## handleSubmit
+> handleSubmit은 React Hook Form에서 Submit을 관리하기 위해 만든 함수이다.
+
+handleSubmit은 함수를 인자로 받으며 그 함수에 data라는 인자를 넘겨준다. 이렇게 넘겨받은 데이터를 출력하면 watch 함수가 <br>
+가장 마지막으로 출력하는 데이터를 볼 수 있다. 
+
+## onError
+> handleSubmit은 두가지 인자를 받는데 하나는 onSubmit으로 정상적으로 Submit 되었을 때 실행하는 함수이고 두번째 인자는<br>
+onError로 Form에서 에러가 났을때 실행되는 함수입니다.
+>> 여기서 에러는 Validation을 통과하지 못했다는 것을 의미합니다.
+
+## mode: "onChange"
+> 실시간으로 유효성 검사를 하게 하며 input에 validation을 설정한 다음에 useForm에서 errors라는 객체를 가져옵니다.
+>> errors는 에러들이 담긴 객체로 모드가 onChange일 경우 에러가 실시간으로 업데이트 된다.
+
+## + 폼 양식을 작성할 때는 공식문서에 있는 빌더를 이용하면 편리하다. 
+<img src="https://user-images.githubusercontent.com/77400522/138428898-1f227695-2d62-4fb7-a0de-8cd0da2345df.png" width="100%" height="100%" />
+
+진행상황 : 프론트엔드 로그인, 회원가입, 인증 구현 완료, 유효성 검사(진행)
