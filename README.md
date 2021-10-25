@@ -214,4 +214,49 @@ router.post('/login', (req, res) => {
 ```
 
 
+### 😎 10/25 (월)
+
+에러: 로그인을 하고 나면 토큰에 내가 저장한 사용자 정보 중 사용자 이름을 가져와서 상단바에 입력하고자 하여 useEffect를 사용하여<br>
+마운트 시에 한 번만 렌더링시켰으나 로그인 후 새로고침이 되지 않아 이름 정보가 화면에 출력되지 않는 상황, 새로고침을 해야 상단바에 이름이 출력<br>
+
+해결: 로그인 직후에 props.history.push('/')를 이용하여 페이지를 이동시켰으나 새로고침은 되지 않아 window.location.replace('/')<br>
+를 사용하여 페이지 이동 후 새로고침 진행하자 화면에 이름이 출력되었다.<br>
+
+키워드: 페이지간 데이터 이동(쿠키), useEffect(), 리액트 생명주기
+
+## history.push vs window.location.href 비교
+
+공통점
+- 다른 페이지로 이동
+
+차이점
+- HTTP 요청<br>
+history.push X | window.location.href O<br>
+- 새로고침<br>
+history.push X | window.location.href O<br>
+- Application 상태 유지<br>
+history.push O | window.location.href X<br>
+
+
+> 좋은 UX와 상태 지속성을 위한다면 일반적인 페이지 이동은 history.push가 더 나은 선택일 수도... <br>
+> 이동과 함께 새로고침이 필요한 경우는 window.location.href를 사용.
+
+## push와 replace의 차이점 ??
+Home > Item > Login > Item 순으로 페이지를 이동했을 때 Login 페이지에서 history.push / history.replace 사용시 차이점 <br>
+
+- history.push
+> Home > Item > Login > Item 순으로 history에 쌓여서 마지막 페이지에서 뒤로가기 버튼을 누르면 Login 페이지로 되돌아간다.
+
+- history.replace
+> Home > Item > Item 순으로 history에 쌓여서 마지막 페이지에서 뒤로가기 버튼을 누르면 Item 페이지로 되돌아간다.
+
+history를 스택이라고 가정한다면 push는 history 최상단에 쌓는 것, replace는 history 제일 위에 있는 원소를 지금 넣을 원소로 바꾸는 것.
+
+## useEffect()
+```swift
+useEffect(() => {
+  ...
+}, [deps])
+```
+
 
