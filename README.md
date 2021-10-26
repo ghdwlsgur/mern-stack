@@ -265,6 +265,68 @@ useEffect(() => {
 useEffect는 콜백 함수를 부르게 되며, 렌더링 혹은 값, 오브젝트의 변경에 따라 어떠한 함수 혹은 여러 개의 함수들을 <br>
 동작시킬 수 있습니다.
 
+### 😎 10/26 (화)
+오늘은 현재까지 프로젝트를 진행하면서 사용했던 라이브러리들 중 개념이 익숙치 않거나 모호한 것들에 대해서 다시 한번 정리해보자.<br>
+
+## Provider 
+
+리액트로 컴포넌트를 만들 때, 상태 값 관리는 보통 props 또는 state로 관리한다. 리액트에는 사실 props와 state외에도<br>
+상태를 관리하는 속성이 있다. 상태 관리(state management) 라이브러리로 react-redux, mobx-react 또는 react-apollo<br>
+등이 있으며 현재 진행중인 프로젝트에서는 react-redux로 상태관리를 하고 있다. 또한 styled-components나 material-ui 등의<br>
+ui라이브러리에서도 이 context를 사용하고 있다. 보통 이러한 라이브러리를 이용하면 Provider라는 이름의 컴포넌트를 제공하는데,<br>
+이 컴포넌트안에서 context값을 핸들링 하고 있다. react-redux를 기준으로 한다면 앱을 실행할 때 아래와 같은 방법으로 앱을 <br>
+선언할 것이다. <br>
+
+```javascript
+<Provider store={store}>
+  <App/>
+</Provider>
+```
+Provider의 역할은 우리의 App이 Redux.store에 접근할 수 있도록 해준다...<br>
+
+<img src="https://user-images.githubusercontent.com/77400522/138813813-60e3d2fa-d891-46f2-9d40-a6c862cf1685.png" witdh="100%" height="100%" /><br>
+
+## connect()
+React.redux는 connect() 함수를 제공하여 우리의 컴포넌트를 store에 연결할 수 있도록 해줍니다.<br>
+connect는 HOC(Higher-Order Component) 패턴이라고 하며 HOC란 컴포넌트를 특정 함수로 감싸서 특정 값 또는 함수를<br>
+props로 받아와서 사용할 수 있게 해주는 패턴입니다.<br>
+즉, connect 함수는 스토어의 상태를 props로 주입시켜주는 mapStateToProps와 액션 생성 함수를 스토어의 dispatch와 연결시켜<br>
+props로 주입시켜주는 mapDispatchToProps를 인자로 받아서 새로운 HOC를 반환한다.
+
+## Hoc
+- 리액트는 함수형 프로그래밍을 지향한다.
+- 컴포넌트는 (순수)함수이다. 즉, props를 받고 ReactElement 트리를 반환하는 순수함수이다.
+- 함수형 프로그래밍에서는 Higher Order Function(HOF)라는 HOC와 유사한 개념이 있다.
+- HOF는 함수를 인자로 받아서 새로운 함수를 반환하는 함수이다.
+- HOF의 장점은 함수에 기능을 추가하는 코드를 재사용 할 수 있다는 것이다.
+- Higher Order Component(HOC)는 바로 HOF에서 유래한 단어이다.
+- 즉, 컴포넌트를 인자로 받아서 컴포넌트를 반환하는 함수를 뜻한다.
+> HOC는 컴포넌트가 아닌 함수를 지칭하는데 이름이 Higher Order Component ? (just 끄덕끄덕)
+- 가장 많이 쓰이는 형태는 스토어와 컴포넌트를 연결시켜 주는 HOC
+- 최근 가장 널리 쓰이는 react-redux의 connect 함수도 이런 역할을 하는데, 엄밀히 말해 Hoc를 생성해주는 헬퍼 함수라고 할 수 있다.
+
+### HOC로 할 수 있는 중요한 기능들
+1. 생명주기 메소드 주입
+2. State 및 이벤트 핸들러 주입
+3. Props 변환 및 주입
+4. Render 함수 확장
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
