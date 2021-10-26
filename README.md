@@ -414,6 +414,16 @@ JSON.stringify() 함수로 직렬화하고, 읽기 전에 JSON.parse()함수로 
 
 <img src="https://user-images.githubusercontent.com/77400522/138825638-50836909-a05b-4496-b0ae-c698a216ca94.png" width="100%" height="100%" />
 
+## Code Spliting 
+
+싱글페이지 어플리케이션에서 번들 사이즈가 커지면 로딩속도나 성능면에서 문제가 생길 수 있다. <br>
+코드 스플리팅은 이것들을 여러개의 번들로 나누거나 동적으로 import하는 기법을 말한다.
+
+## Loadable Components
+
+React가 자체적으로 제공하는 React.lazy나 React.suspense도 있지만 SSR까지 커버 가능하고 사용방법이 거의 동일한 <br>
+Loadable Components를 페이스북에서도 추천하고 있다.
+
 
 
 
