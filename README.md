@@ -425,6 +425,9 @@ React가 자체적으로 제공하는 React.lazy나 React.suspense도 있지만 
 Loadable Components를 페이스북에서도 추천하고 있다.
 
 
+진행상황: 게시글, 댓글, 좋아요 스키마 작성, REST API 테스트 및 작성 완료, 리액트 구현 ing <br>
+개념보완 키워드: # useCallback, useEffect 차이점 # 몽구스 populate, ref 참조
+
 
 
 
