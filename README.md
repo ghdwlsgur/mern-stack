@@ -369,9 +369,64 @@ useSelector는 리덕스의 상태값을 조회하기 위한 hook 함수로 이�
 
 
 쿠키의 단점을 보완해 HTML5에서 '웹스토리지' 라는 기술 탄생
-1-1) 웹스토리지: 로컬스토리지, 세션스토리지
-1-2) 웹스토리지는 Key와 Value 형태로 이루어짐
-1-3) 웹스토리지는 
+- 웹스토리지: 로컬스토리지, 세션스토리지
+- 웹스토리지는 Key와 Value 형태로 이루어짐
+- 웹스토리지는 클라이언트에 대한 정보를 저장.
+- 웹스토리지는 로컬에만 정보를 저장, 쿠키는 서버와 로컬에 정보를 저장.
+
+로컬스토리지는 클라이언트에 대한 정보를 영구적으로 저장<br>
+세션 스토리지는 세션 종료 시(브라우저를 닫을 경우) 클라이언트에 대한 정보 삭제<br>
+### 로컬&세션스토리지 장점
+1. 서버에 불필요하게 데이터를 저장하지 않는다.
+2. 용량이 크다. (약 5MB, 브라우저마다 차이 존재)
+### 로컬&세션스토리지 단점
+1. HTML5를 지원하지 않는 브라우저의 경우 사용 불가
+
+현재 진행하는 프로젝트에서는 userId와 같은 정보를 로그인시에 로컬 스토리지에 저장하고 페이지를 이동하면서 필요할 때 <br>
+로컬스토리지에 저장된 userId를 불러와서 사용하거나 자동로그인을 구현할 때 사용할 것이다. 구현하기에 앞서 실습 먼저 해보자.<br>
+
+## [실습] 웹스토리지(로컬스토리지) <br>
+```javascript
+import React, { useState, useEffect } from 'react';
+function Counter() {
+  const [count, setCount] = useState(() => JSON.parse(window.localStorage.getItem("count")) || 0);
+  useEffect(() => {
+    window.localStorage.setItem("count", JSON.stringify(count));
+  }, [count]);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+}
+```
+
+> useEffect() 함수는 count 상태값이 변경될 때마다 호출, 웹 스토리지는 오직 문자형 데이터만 지원하기 때문에 데이터를 쓰기전에 <br>
+JSON.stringify() 함수로 직렬화하고, 읽기 전에 JSON.parse()함수로 역 직렬화 합니다.
+
+## Serialize. <br>
+### 직렬화와 역직렬화는 디스크로의 저장으로도 사용하지만 네트워크간의 데이터 전송에서도 많이 사용되는 개념. <br>
+
+직렬화 ? (JSON.stringify())
+- 객체를 직렬화하여 전송 가능한 형태로 만드는 것.
+- 객체들의 데이터를 연속적인 데이터로 변형하여 Stream을 통해 데이터를 읽도록 해준다.
+
+역직렬화 ? (JSON.parse())
+- 직렬화된 파일 등을 역으로 직렬화하여 다시 객체의 형태로 만드는 것.
+- 저장된 파일을 읽거나 전송된 스트림 데이터를 읽어 원래 객체의 형태로 복원한다.
+
+
+<img src="https://user-images.githubusercontent.com/77400522/138825638-50836909-a05b-4496-b0ae-c698a216ca94.png" width="100%" height="100%" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
