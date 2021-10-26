@@ -311,18 +311,67 @@ props로 주입시켜주는 mapDispatchToProps를 인자로 받아서 새로운 
 3. Props 변환 및 주입
 4. Render 함수 확장
 
+## ReactNode / ReactElement
+- 클래스형 컴포넌트는 render메소드에서 ReactNode를 리턴한다.
+- 함수형 컴포넌트는 ReactElement를 리턴한다.
+- jsx는 바벨에 의해서 React.createElement(component, props, ...children)함수로 트랜스파일 된다.
+
+## jsx
+```javascript
+<div>Hello {this.props.toWhat}</div>
+<Hello toWhat="World" />
+```
+
+## jsx --> babel(transpile)
+```javascript
+React.createElement('div', null, `Hello${this.props.toWhat}`);
+React.createElement(Hello, {toWhat:'World'}, null);
+```
+
+## 이 React.createElement의 리턴 타입이 바로 ReactElement와 JSX.Element이다.
+정리하자면 함수형 컴포넌트안에서 사용된 jsx는 바벨에 의해서 React.createElement함수로 변환되고 <br>
+이 변환된 함수가 ReactElement를 리턴한다. <br>
+
+<img src="https://user-images.githubusercontent.com/77400522/138818797-252353bb-9aae-4a67-833d-064c55644420.png" width="100%" height="100%"/>
+
+## ReactElement 호출시 리턴되는 객체
+```javascript
+interface ReactElement<P=any, T extends string | JSXElementConstructor<any>=string | JSXElementConstructor<any>> {
+  types: T;
+  props: P;
+  key: Key | null;
+}
+```
+
+## ReactNode
+```javascript
+type ReactText = string | number;
+type ReactChild = ReactElement | ReactText;
+
+interface ReactNodeArray extends Array<ReactNode> { }
+type ReactFragment = { } | ReactNodeArray;
+
+type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
+```
+
+## uaeSelector란 ?
+useSelector는 리덕스의 상태값을 조회하기 위한 hook 함수로 이전의 connect를 통해 상태값을 조회하는 것보다 훨씬 간결하게<br>
+작성하고 코드 가독성이 상승되는 장점이 있는 함수이다.<br>
 
 
 
+## 로컬 스토리지 vs 세션 스토리지
+||로컬 스토리지|세션 스토리지|
+|:---:|:---:|:---:|
+|데이터 영구|O (사용자가 지우지 않는 한)|X (윈도우, 탭 닫을시 내용 제거)|
+|사용방법|자동 로그인|일회성 로그인|
+|주의사항|비밀번호와 같은 중요 정보는 절대 저장 X|비밀번호와 같은 중요 정보는 절대 저장 X|
 
 
-
-
-
-
-
-
-
+쿠키의 단점을 보완해 HTML5에서 '웹스토리지' 라는 기술 탄생
+1-1) 웹스토리지: 로컬스토리지, 세션스토리지
+1-2) 웹스토리지는 Key와 Value 형태로 이루어짐
+1-3) 웹스토리지는 
 
 
 
