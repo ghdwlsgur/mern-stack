@@ -487,7 +487,7 @@ history 객체는 브라우저의 history와 유사하다. 스택(stack)에 현�
 - block(prompt): [function] history 스택의 PUSH/POP 동작을 제어
   
 
-
+진행상황: 게시글 리스트 가져오기, 사용자 id, name 로그인시 로컬스토리지에 저장, 로그아웃시 로컬스토리지 정보 삭제
 
 
 
