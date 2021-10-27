@@ -487,6 +487,69 @@ history 객체는 브라우저의 history와 유사하다. 스택(stack)에 현�
 - block(prompt): [function] history 스택의 PUSH/POP 동작을 제어
   
 
+## Mongoose란 ?
+Node.js와 MongoDB를 연결해주는 ODM(Object Document Mapping): 객체와 문서를 1대1로 매칭하는 역할 
+ 
+## Populate 
+MongoDB 스키마를 만들다 보면 필드 내에 다른 다큐먼트의 ObjectID를 쓰는 경우가 존재.
+> 현 프로젝트에서는 board, comment, like 스키마가 해당된다. (게시글, 댓글, 좋아요)
+  
+## 스키마 정보 1
+```javascript
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+  
+const personSchema = Schema({
+  _id: Schema.Types.ObjectId,
+  name: String,
+  age: Number,
+  stories: [{ type: Schema.Types.ObjectId, ref: 'Story' }]
+});
+```
+  
+## 데이터 조회 1
+  
+```javascript
+{
+  _id: { $oid: 5a23c1b5d52a003c98e13flc },
+  name: 'hongjinhyeok',
+  age: 25,
+  stories: { $oid : 5a23c1b5d52a003c98e13flb }
+}
+```
+  
+  
+## 스키마 정보 2
+```javascript
+const storySchema = Schema({  
+  author: { type: Schema.Types.ObjectId, ref: 'Person' },
+  title: String,
+  fans: [{ types: Schema.Types.ObjectId, ref: 'Person' }]
+});
+```
+
+## 데이터 조회 2
+```javascript
+{
+  _id: { $oid: 5a23c1b5d52a003c98e13flc },
+  name: 'hongjinhyeok',
+  age: 25,
+  stories: { 
+    author: { $oid: 5a23c1b5d52a003c98e13fld },
+    title: 'How to be a good programmer',
+    fans: { $oid: 5a23clb5d52a003c98e13fld }
+  }
+}
+```
+이렇게 populate를 활용하면 Schema.Types.ObjectId가 참조하는 다른 document를 조회할 수 있다.  
+  
+- populate는 간단하게 이런 id값을 펼쳐서 보여주는 기능.
+- populate $oid로 모두 조회를 해서 자바스크립트단에서 합쳐주는 것
+- JOIN처럼 DB 자체에서 합쳐주는 것이 아니므로 성능이 좋지 못하다.
+- 특히 populate가 중첩되면 성능 문제사 생길 확률이 크다.
+  
+  
+  
 진행상황: 게시글 리스트 가져오기, 사용자 id, name 로그인시 로컬스토리지에 저장, 로그아웃시 로컬스토리지 정보 삭제
 
 
