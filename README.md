@@ -429,14 +429,63 @@ Loadable Components를 페이스북에서도 추천하고 있다.
 개념보완 키워드: # useCallback, useEffect 차이점 # 몽구스 populate, ref 참조
 
 
+<hr>
 
+### 😎 10/27 (수)
 
+#### useMemo와 useCallback은 리액트의 렌더링 성능 최적화를 위한 hook
+- 함수형 컴포넌트는 그냥 함수이고 단지 jsx를 반환하는 함수이다.
+- 컴포넌트가 렌더링 된다는 것은 누군가가 그 함수(컴포넌트)를 호출하여서 실행되는 것을 말한다. 함수가 실행될 때마다 내부에
+선언되어 있던 표현식(변수, 또 다른 함수 등)도 매번 다시 선언되어 사용된다.
+- 컴포넌트는 자신의 state가 변경되거나, 부모에게서 받는 props가 변경되었을 때마다 리렌더링 된다. (하위 컴포넌트에
+최적화 설정을 해주지 않으면 부모에게서 받는 props가 변경되지 않았더라도 리렌더링 되는것이 기본)
 
+## useMemo
+- 메모리제이션된 값을 반환한다.
+- CASE: 특정 상황에서만 동작되어야 하는 함수가 Component의 렌더링 조건에 따라 지속적으로 함수가 실행되는 경우
+- useMemo는 deps가 변경되기 전까지 값을 기억하고, 실행 후 값을 보관하는 역할로도 사용한다.
+- 복잡한 함수의 return 값을 기억한다는 점에서 useRef와는 다르다.
+- useRef는 특정 값을 기억하는 경우, useMemo는 복잡한 함수의 return값을 기억하는 경우에 사용한다.
 
+## useCallback
+- 메모리제이션된 함수를 반환한다.
+- CASE: useMemo가 특정 value를 재사용하기 위함이라면 useCallback은 특정 함수를 재사용하기 위함이다.
+- 자식 컴포넌트에 함수를 props로 줄때는 반드시 useCallback을 사용하여 리렌더링이 안되도록 하자.
 
+### 브라우저와 리액트앱의 라우터를 연결하게 되면 그 결과 라우터가 history api에 접근할 수 있게 되며 각각의 Route와 연결된 컴포넌트에 props로 match, location, history라는 객체를 전달하게 된다.
 
+## Match
+match 객체에는 <Route path>와 URL이 매칭된 것에 대한 정보가 담겨져있다. <br>
+대표젹으로 match.params로 path에 설정한 파라미터값을 가져올 수 있다. <br>
+> 현재 프로젝트에서 REST API를 작성할 때 파라미터로 값을 넘겨주는 URL을 많이 포함하고 있는데 파라미터 값을 가져올 때 사용해봐야겠다.
+ 
+- path: [string] 라우터에 정의된 path
+- url: [string] 실제 클라이언트로부터 요청된 url path
+- isExact: [boolean] true일 경우 전체 경로가 완전히 매칭될 경우에만 요청을 수행
+- params: [JSON object] url path로 전달된 파라미터 객체
+ 
+## Location
+location 객체에는 현재 페이지의 정보를 가지고 있다. 대표적으로 location.search로 현재 url의 쿼리 스트링을 가져올 수 있다.
+  
+> 게시글 리스트의 경우 두가지 버전으로 나누어 백단 로직을 짜놓았고 하나는 쿼리스트링을 사용한 페이지네이션이고 다른 하나는 body로 페이지번호를 입력받는 페이지네이션이다. 나는 후자의 경우로 페이지네이션을 사용할 것이므로 location.search를 사용할 일은 없을 것 같다.
+  
+- path: [string] 현재 페이지의 경로명
+- search: [string] 현재 페이지의 query string
+- hash: [string] 현재 페이지의 hash
+  
+## History
+history 객체는 브라우저의 history와 유사하다. 스택(stack)에 현재까지 이동한 url 경로들이 담겨있는 형태로 주소를 임의로 변경하거나 되돌아갈 수 있도록 해준다.
 
-
+- length: [number] 전체 history 스택의 길이
+- action: [string] 최근에 수행된 action (PUSH, REPLACE, or POP)
+- location: [JSON object] 최근 경로 정보
+- push(path, [state]): [function] 새로운 경로를 history 스택으로 푸시하여 페이지를 이동
+- replace(path, [state]): [function] 최근 경로를 history 스택에서 교체하여 페이지를 이동
+- go(n): [function] history 스택의 포인터를 n번째로 이동
+- goBack(): [function] 이전 페이지로 이동
+- goForward(): [function] 앞 페이지로 이동
+- block(prompt): [function] history 스택의 PUSH/POP 동작을 제어
+  
 
 
 
