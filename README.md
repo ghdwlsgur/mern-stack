@@ -649,8 +649,11 @@ RED(실패하는 테스트를 작성) -> GREEN(테스트에 통과하는 코드�
 복잡한 객체는 참조 데이터 타입이라고 불리며, Object, Array, Function 등이 있다. <br>
   
 
-
+  <img src="https://user-images.githubusercontent.com/77400522/139429836-c574320a-47f8-4afb-816c-8aad1ba68b99.png" width="100%" height="100%" />
+  <img src="https://user-images.githubusercontent.com/77400522/139429855-18a0b961-9d30-4dfb-b8cc-3f9f37a905e8.png" width="100%" height="100%" />
   
+## 댓글 작성, 대댓글 작성시 메모리 누수 확인.
+
 
 
   
