@@ -652,9 +652,67 @@ RED(실패하는 테스트를 작성) -> GREEN(테스트에 통과하는 코드�
   <img src="https://user-images.githubusercontent.com/77400522/139429836-c574320a-47f8-4afb-816c-8aad1ba68b99.png" width="100%" height="100%" />
   <img src="https://user-images.githubusercontent.com/77400522/139429855-18a0b961-9d30-4dfb-b8cc-3f9f37a905e8.png" width="100%" height="100%" />
   
-## 댓글 작성, 대댓글 작성시 메모리 누수 확인.
+#### 댓글 작성, 대댓글 작성시 메모리 누수 확인.
+#### 해결 : useEffect()에 빈괄호를 넣어주지 않아 계속 렌더링이 되고 있었다...
+  
+#### 댓글작성 또는 대댓글 작성시 클라이언트 터미널에서 [HPM] Error occurred while trying to proxy request 에러 발생
+#### 공통점 : 댓글 작성, 대댓글 작성시 window.location.replace()로 새로고침 진행, 새로고침 삭제 => 해결
+#### 새로고침 이유 : 댓글 작성시 댓글 수 실시간 변동 해주기 위해서, 대댓글 작성시 게시글 작성자가 아님에도 불구하고 첫댓글에는 작성자 표시 
+  
+#### 게시글 삭제시에 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client 에러 발생
+#### 원인: res.json 중복 처리
+#### 해결: 게시글 삭제 로직 수정 (중복 삭제) 
+  
+## 수정 전
+```javascript
+router.delete('/:uid/:boardId', async (req, res) => {
+  try{
+    await Board.findOneAndDelete({ _id: req.params.boardId, userFrom: { $eq: req.params.uid }})
+    .exec((err, result) => {
+      if(err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, result })
+    })    
+    const removedComment = await Comment.deleteMany({ userFrom: req.params.uid });
+    const removedReply = await Reply.deleteMany({ userFrom: req.params.uid });
+    const removedLike = await Like.deleteMany({ userFrom: req.params.uid });
+    res.json(removedComment);
+    res.json(removedReply);
+    res.json(removedLike);
+  } catch (err) {
+    res.json({ message: err });
+  }
+})  
+```  
 
-
+## 수정 후
+```javascript
+router.delete('/:uid/:boardId', (req, res) => {
+  try{ 
+    Reply.deleteMany({ userFrom: req.params.uid })
+    .exec((err, result) => {
+      if (err) return res.status(400).send(err);
+      return { success: true, result};
+    })
+    Comment.deleteMany({ userFrom: req.params.uid })
+      .exec((err, result) => {
+        if (err) return res.status(400).send(err);
+        return { success: true, result};
+      })
+    Like.deleteMany({ userFrom: req.params.uid })
+    .exec((err, result) => {
+      if (err) return res.status(400).send(err);
+      return { success: true, result};
+    })
+    Board.findOneAndDelete({ _id: req.params.boardId, userFrom: { $eq: req.params.uid } })
+      .exec((err, result) => {
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({ success: true, result });
+    })   
+  } catch (err) {
+    res.json({ message: err });
+  }
+})  
+```  
 
   
 
