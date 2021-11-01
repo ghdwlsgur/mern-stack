@@ -769,3 +769,33 @@ deleteSuccess를 넣어 더 정확하게 했다. 해당 값들은 Boolean 타입
 완료상황: 마이페이지 구성(게시글 수정, 댓글 수정 구현), 내가 쓴 글, 내가 쓴 댓글, 내가 댓글 단 글, 내가 대댓글 단 댓글 구현<br>
 진행상황: 마이페이지: axios -> useDispatch 변경 작업
   
+```javascript
+useEffect(() => {
+    const userFrom = localStorage.getItem('userId');
+    dispatch(getMyReply({ userFrom: userFrom })).then(response => {
+      if (response.payload.success) {
+        saveOptions(response.payload.replies);
+      } else {
+        alert('대댓글을 불러오는데 실패했습니다.');
+      }
+    });
+}, []);
+  
+const saveOptions = replies => {
+  const repliesList = [];
+  replies.forEach(element => {
+    repliesList.push(element.commentFrom;
+  }
+  setRepliesFrom(
+    [...new Set(repliesList.map(JSON.stringify))].map(JSON.parse),
+  );
+}
+```
+  
+  
+  
+  
+  
+  
+  
+  
