@@ -772,21 +772,21 @@ deleteSuccess를 넣어 더 정확하게 했다. 해당 값들은 Boolean 타입
 ```javascript
 useEffect(() => {
     const userFrom = localStorage.getItem('userId');
-    dispatch(getMyReply({ userFrom: userFrom })).then(response => {
+    dispatch(getMyComment({ userFrom: userFrom })).then(response => {
       if (response.payload.success) {
-        saveOptions(response.payload.replies);
+        saveOptions(response.payload.comments);
       } else {
         alert('대댓글을 불러오는데 실패했습니다.');
       }
     });
 }, []);
   
-const saveOptions = replies => {
-  const repliesList = [];
-  replies.forEach(element => {
-    repliesList.push(element.commentFrom;
-  }
-  setRepliesFrom(
+const saveOptions = comments => {
+  const commentsList = [];
+  comments.forEach(element => {
+    commentsList.push(element.boardFrom;
+  });
+  setCommentFrom(
     [...new Set(repliesList.map(JSON.stringify))].map(JSON.parse),
   );
 }
