@@ -806,6 +806,7 @@ const saveOptions = comments => {
   
   
 ### 😎 11/3 (수)
-진행상황: 코드 마무리, css 적용, concurrently 적용, heroku 배포
+진행상황: 코드 마무리, css 적용, concurrently 적용
+개인프로젝트 종료.
   
   
