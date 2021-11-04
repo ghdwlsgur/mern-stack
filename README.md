@@ -1,3 +1,7 @@
+## 프로젝트 설명
+MERN 스택(MongoDB, Express.js, React.js, Node.js를 활용하여 CRUD 기능을 구현하고 REST API를 직접 다뤄봄으로써 프론트엔드와 백엔드에서 필요한 능력을 고루 배양하며 개발하면서 필요하다고 생각되는 개념들을 일차별로 정리하였습니다.
+
+
 ## 실행방법
 1. 환경변수 설정하기 (cd server) > process.env 파일 생성
 ```javascript
@@ -7,6 +11,28 @@ TOKEN_SECRET = adsdasdasda
 2. cd server > yarn install (모듈 설치)
 3. cd client > yarn install (모듈 설치)
 4. cd server > yarn run dev (클라이언트, 서버 동시 실행)
+
+
+## Preview
+![0](https://user-images.githubusercontent.com/77400522/140246301-d4e29c73-f105-421e-901d-3770db0ae2c5.gif)
+![1](https://user-images.githubusercontent.com/77400522/140246330-91d0ef18-ba84-4b35-8737-91a0f3de3d85.gif)
+![2](https://user-images.githubusercontent.com/77400522/140246373-e7cc70f0-cdf9-4161-8b53-226e4952da60.gif)
+![3](https://user-images.githubusercontent.com/77400522/140246369-01eb1911-8c32-4cb6-8b28-e26e7331d8e1.gif)
+![4](https://user-images.githubusercontent.com/77400522/140246364-19d05579-93f9-42ea-bc48-49318a975d34.gif)
+![5](https://user-images.githubusercontent.com/77400522/140246361-aa2ebaf4-8080-49e6-8bc0-81eaa5d23f56.gif)
+![6](https://user-images.githubusercontent.com/77400522/140246356-a203159a-135c-4be6-8903-d1c16c5d29f0.gif)
+![7](https://user-images.githubusercontent.com/77400522/140246354-8a7a3f34-ca7e-4dde-ad16-3eb8f8b78dc9.gif)
+![8](https://user-images.githubusercontent.com/77400522/140246353-40c8dde8-abde-40ad-8472-cb265502127b.gif)
+![9](https://user-images.githubusercontent.com/77400522/140246350-4d78f06f-05d5-489e-bccc-171ccf3c83df.gif)
+![10](https://user-images.githubusercontent.com/77400522/140246348-ebfd03b7-96ed-44be-964a-e5b9146ef708.gif)
+
+
+
+
+
+
+
+
 
 
 
