@@ -790,14 +790,9 @@ const saveOptions = comments => {
   );
 }
 ```
-## console.log(response.payload.comments); console.log(element.boardFrom); console.log(commentsList);<br>
-<img src="https://user-images.githubusercontent.com/77400522/139793907-f9d72a9a-c4ab-487d-b97c-cd9240757702.png" height="100%" width="100%" />
 
-## 나의 댓글 목록
-  <img src="https://user-images.githubusercontent.com/77400522/139793994-bdb83f35-64ec-4d14-99a0-e1b1f2beda42.png" width="100%" height="100%">
-  <img src="https://user-images.githubusercontent.com/77400522/139793998-f5614a0b-37ba-44f2-b2b3-72d03dbd7eee.png" width="100%" height="100%">
-  
-||로컬 스토리지|세션 스토리지|
+# console.log(response.payload.comments),console.log(element.boardFrom),console.log(commentsList)
+||댓글목록|댓글목록|
 |:---:|:---:|:---:|
 |<img src="https://user-images.githubusercontent.com/77400522/139793907-f9d72a9a-c4ab-487d-b97c-cd9240757702.png" height="100%" width="100%" />|  <img src="https://user-images.githubusercontent.com/77400522/139793994-bdb83f35-64ec-4d14-99a0-e1b1f2beda42.png" width="100%" height="100%">|  <img src="https://user-images.githubusercontent.com/77400522/139793998-f5614a0b-37ba-44f2-b2b3-72d03dbd7eee.png" width="100%" height="100%">|
 
@@ -812,5 +807,40 @@ const saveOptions = comments => {
     
 ## 📄 11/3 (수)
 - ⚙️ 진행상황: 코드 마무리(사용자 입장에서 에러 찾기), css 적용, concurrently 적용, 개인프로젝트 종료.
+  
+  
+## 📄 11/4 (목)
+```javascript
+router.post('/getBoard', (req, res) => {
+  const Page = req.body.page;
+  Board.countDocuments({}, (err, count) => {
+    if(err) {
+      return res.status(400).send(err);
+    } else {
+      Board.find()
+      .sort({ createdAt: -1 })
+      .skip((Page-1)*10))
+      .limit(10)
+      .populate("userFrom")
+      .exec((err, boards) => {
+        if(err) return res.status(400).send(err);
+        res.status(200).json({ success: true, boards, count });
+      })  
+    }
+  }) 
+})  
+```  
+  
+```javascript
+# 코드해석
+filter 옵션을 파라미터로 받지만 옵션이 비어있으므로 필터 옵션은 없다.
+find 조건에 따라서 1페이지를 가정한다면, 데이터를 내림차순으로 정렬하고, 0부터 ~ 9까지의 데이터를 보여준다.
+2페이지를 가정한다면, 10부터 ~ 19까지의 데이터를 보여준다.
+skip은 시작점을 가르키고 limit은 페이지당 보여지는 데이터의 갯수를 의미한다.
+```
+  
+  
+  
+  
   
   
