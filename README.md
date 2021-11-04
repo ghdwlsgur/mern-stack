@@ -791,7 +791,7 @@ const saveOptions = comments => {
 }
 ```
 
-# console.log(response.payload.comments),console.log(element.boardFrom),console.log(commentsList)
+console.log(response.payload.comments),console.log(element.boardFrom),console.log(commentsList)<br>
 ||댓글목록|댓글목록|
 |:---:|:---:|:---:|
 |<img src="https://user-images.githubusercontent.com/77400522/139793907-f9d72a9a-c4ab-487d-b97c-cd9240757702.png" height="100%" width="100%" />|  <img src="https://user-images.githubusercontent.com/77400522/139793994-bdb83f35-64ec-4d14-99a0-e1b1f2beda42.png" width="100%" height="100%">|  <img src="https://user-images.githubusercontent.com/77400522/139793998-f5614a0b-37ba-44f2-b2b3-72d03dbd7eee.png" width="100%" height="100%">|
@@ -837,6 +837,18 @@ filter 옵션을 파라미터로 받지만 옵션이 비어있으므로 필터 �
 find 조건에 따라서 1페이지를 가정한다면, 데이터를 내림차순으로 정렬하고, 0부터 ~ 9까지의 데이터를 보여준다.
 2페이지를 가정한다면, 10부터 ~ 19까지의 데이터를 보여준다.
 skip은 시작점을 가르키고 limit은 페이지당 보여지는 데이터의 갯수를 의미한다.
+```
+  
+## innerHTML, innerText, innerContent의 차이
+```html
+<div id='my_div'>
+  안녕하세요 ? 만나서 반가워요 
+  <span styled='display: none'>숨겨진 텍스트</span>
+</div>
+```
+
+- innerHTML
+1. innerHTML은 'Element'의 속성으로, 해당 Element의 HTML, XML을 읽어오거나 설정할 수 있다.
 ```
   
   
