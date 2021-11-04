@@ -849,7 +849,18 @@ skip은 시작점을 가르키고 limit은 페이지당 보여지는 데이터�
 
 - innerHTML
 1. innerHTML은 'Element'의 속성으로, 해당 Element의 HTML, XML을 읽어오거나 설정할 수 있다.
-```
+<img width="312" alt="스크린샷 2021-11-04 오후 4 05 08" src="https://user-images.githubusercontent.com/77400522/140271566-8bddf11e-574a-40e5-8005-587cadbe7a28.png">
+
+  
+- innerText
+1. innerText은 'Element'의 속성으로, 해당 Element 내엣 사용자에게 '보여지는' 텍스트 값으 읽어온다.
+<img width="182" alt="스크린샷 2021-11-04 오후 4 05 14" src="https://user-images.githubusercontent.com/77400522/140271576-b7436dff-0682-4a54-92ec-8fd371f551c5.png">
+
+  
+- textContent
+1. textContent은 'Node'의 속성으로, innerText오 달리 <script>나 <style> 태그와 상관없이 해상 노드가 가지고 있는 텍스트 값을 그대로 읽는다.
+<img width="201" alt="스크린샷 2021-11-04 오후 4 05 22" src="https://user-images.githubusercontent.com/77400522/140271549-1e09cec4-9927-42be-b97c-3b70a5cde5aa.png">
+
   
   
   
