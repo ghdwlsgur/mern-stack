@@ -796,7 +796,13 @@ const saveOptions = comments => {
 ## 나의 댓글 목록
   <img src="https://user-images.githubusercontent.com/77400522/139793994-bdb83f35-64ec-4d14-99a0-e1b1f2beda42.png" width="100%" height="100%">
   <img src="https://user-images.githubusercontent.com/77400522/139793998-f5614a0b-37ba-44f2-b2b3-72d03dbd7eee.png" width="100%" height="100%">
+  
+||로컬 스토리지|세션 스토리지|
+|:---:|:---:|:---:|
+|<img src="https://user-images.githubusercontent.com/77400522/139793907-f9d72a9a-c4ab-487d-b97c-cd9240757702.png" height="100%" width="100%" />|  <img src="https://user-images.githubusercontent.com/77400522/139793994-bdb83f35-64ec-4d14-99a0-e1b1f2beda42.png" width="100%" height="100%">|  <img src="https://user-images.githubusercontent.com/77400522/139793998-f5614a0b-37ba-44f2-b2b3-72d03dbd7eee.png" width="100%" height="100%">|
 
+  
+  
 ## 📄 11/2 (화)
 - 완료상황: 게시판 리스트에서 이름 클릭시 회원 정보 조회(이메일, 자기소개), 대댓글 보기 클릭시 모든 댓글에 달린 대댓글 보기가 활성화되는 에러 해결 
 - 대댓글 보기 클릭시 해당 comment._id를 가져와 commentId에 저장한다음 comment._id와 commentId가 동일할 경우의 조건을 추가하여 해결
