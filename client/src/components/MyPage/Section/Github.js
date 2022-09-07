@@ -64,7 +64,7 @@ function Github({ history }) {
         <FilledInput
           id="newGithub"
           name="newGithub"
-          placeholder="ex) https://github.com/ragnarok-forU"
+          placeholder="ex) https://github.com/ghdwlsgur"
           {...register('newGithub', {
             pattern:
               /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi ||

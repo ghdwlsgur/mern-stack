@@ -174,7 +174,7 @@ function RegisterPage(props) {
           <FilledInput
             id="github"
             name="github"
-            placeholder="ex) https://github.com/ragnarok-forU"
+            placeholder="ex) https://github.com/ghdwlsgur"
             {...register('github', {
               pattern:
                 /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi ||

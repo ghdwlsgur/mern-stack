@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <Project>
         <a
-          href="https://github.com/ragnarok-forU"
+          href="https://github.com/ghdwlsgur"
           target="_blank"
           rel="noreferrer noopener"
         >

@@ -49,7 +49,7 @@ const Header = props => {
   useEffect(() => {
     getName();
     console.log('안녕하세요. 프론트엔드 개발자가 되고 싶은 홍진혁입니다.');
-    console.log('https://github.com/ragnarok-forU/Project-Study');
+    console.log('https://github.com/ghdwlsgur/raise');
     console.log(
       '기타 이슈사항을 이곳에 남겨주시면 감사하겠습니다. 좋은 하루 되세요 !!',
     );
